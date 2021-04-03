@@ -4,26 +4,12 @@ import java.util.Arrays;
 
 import sorting.AbstractSorting;
 
-/**
- * Classe que implementa a estratégia de Counting Sort vista em sala. Procure
- * evitar desperdicio de memoria alocando o array de contadores com o tamanho
- * sendo o máximo inteiro presente no array a ser ordenado.
- *
- * Voce pode assumir que o maior inteiro armazenado não chega a 100.
- *
- */
+
 public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		boolean isSortable = false;
-		
-		//verificando se o array eh ordenavel
-		if (leftIndex < rightIndex && rightIndex < array.length) {
-			isSortable = true;
-		}
-		
-		if (!isSortable) {
+		if (!isSortable(array, leftIndex, rightIndex)) {
 			return;
 		}
 		
@@ -47,15 +33,8 @@ public class CountingSort extends AbstractSorting<Integer> {
 	}
 	
 	private Integer[] countingSort(Integer[] slice, int k) {
-		boolean hasZero = false;
+		boolean hasZero = contains(slice, 0);
 		Integer[] sliceOrdenado = new Integer[slice.length];
-		
-		//verificando se ha elementos iguais a zero no array
-		for (int i = 0; i < slice.length; i++) {
-			if (slice[i] == 0) {
-				hasZero = true;
-			}
-		}
 		
 		if (!hasZero) {
 			sliceOrdenado = countingSortWithoutZero(slice, k);
@@ -117,5 +96,21 @@ public class CountingSort extends AbstractSorting<Integer> {
 		
 		return sliceOrdenado;
 	}
-
+	
+	private boolean contains(Integer[] array, Integer elemento) {
+		for (int i = 0; i <= array.length - 1; i++) {
+			if (array[i] == elemento) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean isSortable(Integer[] array, int leftIndex, int rightIndex) {
+		if (leftIndex < rightIndex && rightIndex < array.length) {
+			return true;
+			}
+		return false;
+	}
 }

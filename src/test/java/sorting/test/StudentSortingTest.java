@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
+import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
 
@@ -39,7 +40,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new CountingSort();
+		this.implementation = new ExtendedCountingSort();
 		//Assert.fail("Implementation not provided");
 	}
 
@@ -170,6 +171,14 @@ public class StudentSortingTest {
 		Integer[] array = {3, 11, 20, 24, 32, 72, 79, 124, 125, 475, 2303};
 		Integer[] arraySorted = {3, 11, 20, 24, 32, 72, 79, 124, 125, 475, 2303};
 		implementation.sort(arraySorted, 0, 10);
+		Assert.assertArrayEquals(arraySorted, array);
+	}
+	
+	@Test
+	public void testZeroAleatorio() {
+		Integer[] array = {3, 11, 20, 24, 32, 72, 79, 124, 125, 0, 475, 2303};
+		Integer[] arraySorted = {0, 3, 11, 20, 24, 32, 72, 79, 124, 125, 475, 2303};
+		implementation.sort(array, 0, 11);
 		Assert.assertArrayEquals(arraySorted, array);
 	}
 }
