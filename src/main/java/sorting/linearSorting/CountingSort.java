@@ -98,19 +98,21 @@ public class CountingSort extends AbstractSorting<Integer> {
 	}
 	
 	private boolean contains(Integer[] array, Integer elemento) {
+		boolean valor = false;
 		for (int i = 0; i <= array.length - 1; i++) {
 			if (array[i] == elemento) {
-				return true;
+				valor = true;
 			}
 		}
 		
-		return false;
+		return valor;
 	}
 	
 	private boolean isSortable(Integer[] array, int leftIndex, int rightIndex) {
+		boolean valor = false;
 		if (leftIndex < rightIndex && rightIndex < array.length) {
-			return true;
+			valor = true;
 			}
-		return false;
+		return valor;
 	}
 }
